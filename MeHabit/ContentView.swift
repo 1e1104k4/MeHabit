@@ -8,14 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var data = Activities()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List(data.activities) { activity in
+                NavigationLink {
+                    Text("Detail view")
+                } label: {
+                    HStack {
+                        Text(activity.title)
+                        Spacer()
+                        Text(String(activity.competionCount))
+                    }
+                }
+            }
+            .navigationTitle("MeHabit")
         }
-        .padding()
     }
 }
 
