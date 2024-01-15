@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var data = Activities()
+    @State private var addingNewHabit = false
     
     var body: some View {
         NavigationStack {
@@ -24,6 +25,14 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("MeHabit")
+            .toolbar {
+                Button("Add new habit", systemImage: "plus") {
+                    addingNewHabit.toggle()
+                }
+            }
+            .sheet(isPresented: $addingNewHabit) {
+                AddActivity(data: data)
+            }
         }
     }
 }
